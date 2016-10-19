@@ -29,7 +29,7 @@ class DB_Connect{
         if($type == 3) $mysqli_type = MYSQLI_NUM;
         $result = mysqli_query($this->link, $sql);
         $this->error = mysqli_error($this->link);
-        $this->num_rows = mysqli_num_rows($this->link);
+        $this->num_rows = mysqli_num_rows($result);
         if ($result) {
             # code...
             while ($line = @mysqli_fetch_array($result, $mysqli_type)) {
@@ -51,7 +51,7 @@ class DB_Connect{
         if($type == 3) $mysqli_type = MYSQLI_NUM;
         $result = mysqli_query($this->link, $sql);
         $this->error = mysqli_error($this->link);
-        $this->num_rows = mysqli_num_rows($this->link);
+        $this->num_rows = mysqli_num_rows($result);
         if ($result) {
             # code...
             $rows = @mysqli_fetch_array($result, $mysqli_type);

@@ -15,25 +15,24 @@
 <title></title>
 </head>
 <body>
-<tale width="500" align="center" border="1">
-<tr><td>请选择房间进入</td><tr>
+<table width="500" align="center" border="1">
+<tr>
+    <td>请选择房间进入</td>
+</tr>
 <tr>
     <td>
-    <?php
-        // 列表
-        $sql = "SELECT * FROM chat_home";
-        $data = $db->fecth_list($sql);
-        $count = $db->get_num();
-        for ($i=0; $i < count; $i++) { 
-            # code...
-            echo '<a href="main.php?id='.$data['i']['id'].'">' . $data['i']['name'] . '</a>'; 
-        }
+    <?
+    // 列表
+    $sql = "SELECT * FROM chat_home";
+    $data = $db->fetch_list($sql);
+    $count = $db->get_num();
+    for ($i=0; $i < $count; $i++) { 
+        # code...
+        echo '<a href="main.php?id=' . $data[$i]['id'].'">' . $data[$i]['name'] . '</a>  '; 
+    }
     ?>
     </td>
 </tr>
 </table>
 </body>
 </html>
-<?php  
-
-?>

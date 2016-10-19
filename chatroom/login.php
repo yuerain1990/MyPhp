@@ -17,7 +17,8 @@
         // 查询数据库
         $sql = "SELECT * FROM chat_user WHERE username='$user' AND password='$pass'";
         $data = $db->fetch_rows($sql);
-        if ($db->get_nums() <> 0) {
+        $num = $db->get_num();
+        if ($num && $num <> 0) {
             # code...
             // 查询到相关记录
             $_SESSION['username'] = $user;
