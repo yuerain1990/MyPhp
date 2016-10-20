@@ -35,6 +35,7 @@
     $db->query($sql);
     echo "重新添加后";
 ?>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">-->
 <html>
 <head>
 <title><?=$data['name']?></title>
@@ -101,7 +102,7 @@ function setmessage()
     if (mcontent != "" && mcontent != "\n" && mcontent != "\r\n" && mcontent != "\n\n") {
         ajax.open("POST", url, true);
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        ajax.sent(postStr);
+        ajax.send(postStr);
     }
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
@@ -141,7 +142,7 @@ function writeMessage(content, from, to, time)
     } else {
         fromstr = "<a href=\"javascript:;\"onclick=\"parent.getusrename('"+from+"');return false;\"><font color='#008800'>"+from+"</font></a>";
     }
-    message += fromstr + " 对 " + tostr + " 说： " + "<font color='#000088'>" + content + "</font>" + "<span class=tm>(" + time + ")</span><br>;
+    message += fromstr + " 对 " + tostr + " 说： " + "<font color='#000088'>" + content + "</font>" + "<span class=tm>(" + time + ")</span><br>";
     window.showmessage.document.write(message);
 }
 
@@ -180,7 +181,7 @@ function scrollWindow()
 {
     if (!window.inputmess.document.getElementById('scroll').checked)
         return false;
-    window.scrollmessage.scrollTo(showmessage.document.body.scrollLeft, showmessage.document.body.scrollTop+20);
+    //window.scrollmessage.scrollTo(showmessage.document.body.scrollLeft, showmessage.document.body.scrollTop+20);
 }
 
 // 清屏
@@ -213,15 +214,18 @@ function initChatRoom()
     setInterval("scrollWindow()", 50);
 }
 </script>
-<frameset cols="*,200" frameborder=1>
+<!--<frameset cols="*,200" frameborder=1>
     <frameset rows="*,80" frameborder=0>
         <frame src="about:blank" name="showmessage">
         <frame src="msg.htm" name="inputmess" noresize >
     </frameset>
     <frame src="online.htm" name="onlinelist">
 </frameset>
-<noframes></noframes>
-<body onLoad="initChatRoom();">
+<noframes></noframes>-->
+<iframe src="about:blank" name="showmessage"></iframe>
+<iframe src="msg.htm" name="inputmess" noresize ></iframe>
+<iframe src="online.htm" name="onlinelist"></iframe>
+<body onLoad="initChatRoom()">
 </body>
 </html>
 

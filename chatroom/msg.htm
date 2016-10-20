@@ -29,7 +29,7 @@
 <body onload="parent.initChatRoom()" scroll=no topmargin=5 leftmargin=0 bgcolor="#E4EBF3">
     <br>
     你对<input type="text" id="touser" name="touser" class="input" size="5" value="所有人" />
-    说<textarea type="text" id="touser" name="content" class="input" rows="1" scrolling="no" style="height:20px;overflow:hidden;width:280px;" onkeydown="if(event.keyCode == 13)parent.setmessage()"></textarea>
+    说<textarea type="text" id="content" name="content" class="input" rows="1" scrolling="no" style="height:20px;overflow:hidden;width:280px;" onkeydown="if(event.keyCode == 13)parent.setmessage()"></textarea>
     <input type="button" value="发言" class="button" onclick="parent.setmessage()" />
     <input type="button" value="清屏" class="button" onclick="parent.clearScreen()" />
     <input type="button" value="退出" class="button" onclick="if(confirm('此操作会离开聊天室并返回网站首页。\n\n您真的要离开聊天室吗？')) parent.quitroom();" />
