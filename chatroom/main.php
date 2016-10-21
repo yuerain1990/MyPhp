@@ -141,7 +141,7 @@ function writeMessage(content, from, to, time)
     } else {
         fromstr = "<a href=\"javascript:;\"onclick=\"parent.getusrename('"+from+"');return false;\"><font color='#008800'>"+from+"</font></a>";
     }
-    message += fromstr + " 对 " + tostr + " 说： " + "<font color='#000088'>" + content + "</font>" + "<span class=tm>(" + time + ")</span><br>;
+    message += fromstr + " 对 " + tostr + " 说： " + "<font color='#000088'>" + content + "</font>" + "<span class=tm>(" + time + ")</span><br>";
     window.showmessage.document.write(message);
 }
 
@@ -221,7 +221,7 @@ function initChatRoom()
     <frame src="online.htm" name="onlinelist">
 </frameset>
 <noframes></noframes>
-<body onLoad="initChatRoom();">
+<body onLoad="initChatRoom()">
 </body>
 </html>
 
