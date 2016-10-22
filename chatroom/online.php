@@ -15,19 +15,22 @@ $stime = 120;
 $username = $_SESSION['username'];
 $homeid = $_SESSION['homeid'];
 $time = time();
-$ip = getenv("REMOTE_ADDR");
+// $ip = getenv("REMOTE_ADDR"); //::1
+// $ip = $_SERVER['REMOTE_ADDR']; //::1
+// $ip = $_SERVER['SERVER_ADDR']; //::1
+$ip = "127.0.0.1";
 
 // 更新自己的时间
-$sql = "UPDATE chat_onlie SET intime = '$time' WHERE username = '$username'";
+$sql = "UPDATE chat_online SET intime = '$time' WHERE username = '$username'";
 $db->query($sql);
 
 // 清除过期消息
 $stime = $time - $stime;
-$sql = "DELETE FROM chat_onlie WHERE intime < '$stime' and homeid = '$homeid'";
+$sql = "DELETE FROM chat_online WHERE intime < '$stime' and homeid = '$homeid'";
 $db->query($sql);
 
 // 读取数据
-$sql = "SELECT * FROM chat_onlie WHERE homeid = '$homeid'";
+$sql = "SELECT * FROM chat_online WHERE homeid = '$homeid'";
 $data = $db->fetch_list($sql);
 $count = $db->get_num();
 

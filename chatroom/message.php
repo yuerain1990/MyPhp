@@ -20,7 +20,7 @@ if ($id == '') {
     setcookie('id', $id);
 }
 
-$sql = "SELECT * FROM chat_mess WHERE id > '{$id}' and homeid = '{$_SESSION['homeid']}'";
+$sql = "SELECT * FROM chat_mess WHERE id >= '{$id}' and homeid = '{$_SESSION['homeid']}'";
 $row = $db->fetch_list($sql);
 $count = $db->get_num();
 $end = @end($row);
@@ -29,7 +29,7 @@ if ($count > 0) {
     setcookie("id", $end[0]);
     for ($i=0; $i < $count; $i++) { 
         $row[$i]['time'] = date("H:i:s", $row[$i]['time']);
-        echo "writeMessage('{$row[$i]['content']}','{$row[$i]['fromuser']}','{$row[$i]['touser']}','{$row[$i]['time']}'";
+        echo "writeMessage('{$row[$i]['content']}','{$row[$i]['fromuser']}','{$row[$i]['touser']}','{$row[$i]['time']}');";
     }
 }
 ?>

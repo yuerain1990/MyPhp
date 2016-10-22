@@ -27,9 +27,9 @@ class DB_Connect{
         if($type == 1) $mysqli_type = MYSQLI_BOTH;
         if($type == 2) $mysqli_type = MYSQLI_ASSOC;
         if($type == 3) $mysqli_type = MYSQLI_NUM;
-        $result = mysqli_query($this->link, $sql);
+        $result = @mysqli_query($this->link, $sql);
         $this->error = mysqli_error($this->link);
-        $this->num_rows = mysqli_num_rows($result);
+        $this->num_rows = @mysqli_num_rows($result);
         if ($result) {
             # code...
             while ($line = @mysqli_fetch_array($result, $mysqli_type)) {
@@ -49,9 +49,9 @@ class DB_Connect{
         if($type == 1) $mysqli_type = MYSQLI_BOTH;
         if($type == 2) $mysqli_type = MYSQLI_ASSOC;
         if($type == 3) $mysqli_type = MYSQLI_NUM;
-        $result = mysqli_query($this->link, $sql);
+        $result = @mysqli_query($this->link, $sql);
         $this->error = mysqli_error($this->link);
-        $this->num_rows = mysqli_num_rows($result);
+        $this->num_rows = @mysqli_num_rows($result);
         if ($result) {
             # code...
             $rows = @mysqli_fetch_array($result, $mysqli_type);

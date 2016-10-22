@@ -28,7 +28,7 @@
     $count = $db->get_num();
     for ($i=0; $i < $count; $i++) { 
         # code...
-        echo '<a href="main.php?id=' . $data[$i]['id'].'">' . $data[$i]['name'] . '</a>  '; 
+        echo '<a href="main.php?id=' . $data[$i]['id'] . '">' . $data[$i]['name'] . '</a>  '; 
     }
     ?>
     </td>

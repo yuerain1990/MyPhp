@@ -14,7 +14,6 @@
     // 检查房间是否存在
     $sql = "SELECT * FROM chat_home WHERE id='{$_GET['id']}'";
     $data = $db->fetch_rows($sql);
-    var_dump($data);
     if (!$data['id']) die('房间不存在');
 
     $_SESSION['homeid'] = $homeid;
@@ -24,16 +23,13 @@
     $time = time();
     $ip = getenv("REMOTE_ADDR");
 
-    echo "清除前";
     // 清除自己的在线记录（如果有的话，比如换房间）
     $sql = "DELETE FROM chat_online WHERE username='$username'";
     $db->query($sql);
-    echo "清除后";
 
     // 重新添加
     $sql = "INSERT INTO chat_online (id, homeid, username, intime, ip) VALUES (NULL, '$homeid', '$username', '$time', '$ip')";
     $db->query($sql);
-    echo "重新添加后";
 ?>
 <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">-->
 <html>
@@ -45,9 +41,9 @@
 </head>
 <script language="javascript">
 var username = "<?=$_SESSION['username']?>";
-var hoomname = "<?=$_SESSION['name']?>";
-var homeid = "<?=$_SESSION['id']?>";
-document.write("Hello World!");
+var hoomname = "<?=$data['name']?>";
+var homeid = "<?=$_GET['id']?>";
+
 // 建立Ajax实例
 function InitAjax()
 {
@@ -66,7 +62,7 @@ function InitAjax()
 // 取回聊天记录
 function getmessage()
 {
-    var url = "message.php?hid="+homeid;
+    var url = "message.php?hid=" + homeid;
     var ajax = InitAjax();
     ajax.open('GET', url, false);   // false 同步执行, true 异步执行
     ajax.onreadystatechange = function() {
@@ -96,15 +92,16 @@ function setmessage()
     }
 
     window.inputmess.document.getElementById('content').value = "";
+    // var url = "my_file/MyPhp/chatroom/post.php";
     var url = "post.php";
     var ajax = InitAjax();
     var postStr = "touser=" + mtouser + "&content=" + mcontent;
     if (mcontent != "" && mcontent != "\n" && mcontent != "\r\n" && mcontent != "\n\n") {
-        ajax.open("POST", url, true);
+        ajax.open('POST', url, true);
         ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         ajax.send(postStr);
     }
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function() {  
         if (ajax.readyState == 4 && ajax.status == 200) {
             eval(ajax.responseText);
         }
@@ -135,12 +132,12 @@ function writeMessage(content, from, to, time)
     if (to == username) {
         tostr = "<font color='red'>你</font>";
     } else {
-        tostr = "<a href=\"javascript:;\"onclick=\"parent.getusrename('"+to+"');return false;\"><font color='#008800'>"+to+"</font></a>";
+        tostr = "<a href=\"javascript:;\"onclick=\"parent.getusername('"+to+"');return false;\"><font color='#008800'>"+to+"</font></a>";
     }
     if (from == username) {
         fromstr = "<font color='red'>你</font>";
     } else {
-        fromstr = "<a href=\"javascript:;\"onclick=\"parent.getusrename('"+from+"');return false;\"><font color='#008800'>"+from+"</font></a>";
+        fromstr = "<a href=\"javascript:;\"onclick=\"parent.getusername('"+from+"');return false;\"><font color='#008800'>"+from+"</font></a>";
     }
     message += fromstr + " 对 " + tostr + " 说： " + "<font color='#000088'>" + content + "</font>" + "<span class=tm>(" + time + ")</span><br>";
     window.showmessage.document.write(message);
@@ -164,7 +161,7 @@ function getonline()
 // 写入在线列表
 function writeonline(word)
 {
-    var str = '<li><a href="javascript:;"onclick="parent.getusrename(\'所有人\');return false;">所有人</a></li>';
+    var str = '<li><a href="javascript:;"onclick="parent.getusername(\'所有人\');return false;">所有人</a></li>';
     str += word;
     window.onlinelist.document.getElementById('online').innerHTML = str;
 }
@@ -181,7 +178,7 @@ function scrollWindow()
 {
     if (!window.inputmess.document.getElementById('scroll').checked)
         return false;
-    //window.scrollmessage.scrollTo(showmessage.document.body.scrollLeft, showmessage.document.body.scrollTop+20);
+    window.showmessage.scrollTo(showmessage.document.body.scrollLeft, showmessage.document.body.scrollTop+20);
 }
 
 // 清屏
