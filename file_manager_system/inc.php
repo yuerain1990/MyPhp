@@ -4,10 +4,10 @@
     require 'cls_file.php';
 
     // 包含模板类文件
-    require '../include/libs/Smarty.class.php';
+    require 'include/libs/Smarty.class.php';
 
     // 创建模板类实例
-    $smarty = new Smarty;
+    $smarty = new Smarty();
 
     // 编译
     $smarty->compile_check = true;
